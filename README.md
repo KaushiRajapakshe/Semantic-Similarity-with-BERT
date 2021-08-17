@@ -31,6 +31,8 @@ Here are the "similarity" label values in the dataset:
     ```!pip install transformers==2.11.0```
   
 **References**
-    * Mohamad Merchant - https://keras.io/examples/nlp/semantic_similarity_with_bert/
-    * [BERT](https://arxiv.org/pdf/1810.04805.pdf)
-    * [SNLI](https://nlp.stanford.edu/projects/snli/)
+
+* Mohamad Merchant - https://keras.io/examples/nlp/semantic_similarity_with_bert/
+* [BERT](https://arxiv.org/pdf/1810.04805.pdf)
+* [SNLI](https://nlp.stanford.edu/projects/snli/)
+
