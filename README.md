@@ -1,4 +1,4 @@
-#Semantic Similarity with BERT
+# Semantic Similarity with BERT
 
 **Natural Language Inference by fine-tuning BERT model on SNLI (Stanford Natural Language Inference) Corpus.**
 
