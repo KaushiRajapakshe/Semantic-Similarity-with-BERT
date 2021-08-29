@@ -23,6 +23,7 @@
 # Press the green button in the gutter to run the script.
 from controller.main_controller import MainController
 from logic.similarity import Similarity
+from model.Database import Database
 from model.Dataset import Dataset
 from model.Model import Model
 
@@ -35,6 +36,7 @@ class Main:
             self.model = Model()
             self.dataset = Dataset()
             self.similarity = Similarity()
+            self.database = Database()
 
 
 main = Main()

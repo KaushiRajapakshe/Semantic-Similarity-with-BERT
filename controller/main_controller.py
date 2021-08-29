@@ -1,7 +1,7 @@
 """
     Created by KaushiRajapakshe on 17/08/2021.
 
-    Semantic Similarity with BERT
+    Semantic Similarity with BERT (Bidirectional Encoder Representations from Transformers)
     Natural Language Inference by fine-tuning BERT model on SNLI (Stanford Natural Language Inference) Corpus.
 
     * BERT model that takes two sentences as inputs and that outputs a similarity score for these two sentences.
@@ -27,8 +27,10 @@ from bert.BertSemanticDataGenerator import BertSemanticDataGenerator
 from constant.constant import sentence1, sentence2, sentence3, sentence4, sentence5, sentence6, initial_state, \
     app_config_path
 from controller import config_controller
+from controller.database_controller import DatabaseController
 from controller.dataset_controller import DatasetController
 from controller.model_controller import ModelController
+from logic.firebase_database import Database
 from logic.similarity import Similarity
 
 
@@ -41,6 +43,9 @@ class MainController:
 
         # get string value initial_state
         initial_state_value = app_config.get('default', initial_state)
+
+        # initialize firebase
+        Database.init_firebase(self.database)
 
         # initial_state == enable
         if initial_state_value == 'enable':
@@ -62,6 +67,13 @@ class MainController:
         else:
             print('else')
 
-        print(Similarity.check_similarity(self.model, sentence1, sentence2))
-        print(Similarity.check_similarity(self.model, sentence3, sentence4))
-        print(Similarity.check_similarity(self.model, sentence5, sentence6))
+        DatabaseController.get_sentence_score(self.database)
+        score1 = Similarity.check_similarity(self.model, sentence1, sentence2)
+        print(score1)
+        DatabaseController.save_sentence_score(self.database, sentence1, sentence2, score1)
+        score2 = Similarity.check_similarity(self.model, sentence3, sentence4)
+        print(score2)
+        DatabaseController.save_sentence_score(self.database, sentence3, sentence4, score2)
+        score3 = Similarity.check_similarity(self.model, sentence5, sentence6)
+        print(score3)
+        DatabaseController.save_sentence_score(self.database, sentence5, sentence6, score3)
